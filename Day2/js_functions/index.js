@@ -35,8 +35,8 @@ fibonacciSubmitBtn.addEventListener("click", function() {
     if (isNaN(fibonacciNumbers)) {
         fibonacciText.textContent = "Enter a number before submitting"
     }
-    else if (fibonacciNumbers < 2) {
-        fibonacciText.textContent = "Enter a number greater than or equal to 2"
+    else if (fibonacciNumbers <= 0) {
+        fibonacciText.textContent = "Enter a number greater than 0"
     }
     else {
         fibonacciText.textContent = displayXFibonnaciNumbers(fibonacciNumbers);
@@ -72,16 +72,21 @@ function calculateTriangleAreaHeronsFormula(arr) {
     RET: NA
 */
 function logXFibonnaciNumbers(x) {
-    let prev = 0;
-    let curr = 1;
-    console.log(prev);
-    console.log(curr);
-    while (x > 2) {
-        oldCurr = curr;
-        curr += prev;
-        prev = oldCurr;
+    if (x == 1) {
+        console.log(1);
+    } 
+    else {
+        let prev = 0;
+        let curr = 1;
+        console.log(prev);
         console.log(curr);
-        x--;
+        while (x > 2) {
+            oldCurr = curr;
+            curr += prev;
+            prev = oldCurr;
+            console.log(curr);
+            x--;
+        }
     }
 }
 
@@ -92,17 +97,20 @@ function logXFibonnaciNumbers(x) {
     RET: NA
 */
 function displayXFibonnaciNumbers(x) {
-    let text = "0, 1";
-    let prev = 0;
-    let curr = 1;
-    console.log(prev);
-    console.log(curr);
-    while (x > 2) {
-        oldCurr = curr;
-        curr += prev;
-        prev = oldCurr;
-        text += ", " + curr;
-        x--;
+    if (x === 1) {
+        return "1";
     }
+    else {
+        let text = "0, 1";
+        let prev = 0;
+        let curr = 1;
+        while (x > 2) {
+            oldCurr = curr;
+            curr += prev;
+            prev = oldCurr;
+            text += ", " + curr;
+            x--;
+        }
     return text;
+    }
 }
