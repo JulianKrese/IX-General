@@ -17,6 +17,11 @@ areaSubmitBtn.addEventListener("click", function () {
     else if (a <= 0 || b <= 0 || c <= 0) {
         areaText.textContent = "Enter all fields as positive values";
     }
+    else if (!(a + b > c) || !(a + c > b) || !(b + c > a)) {
+        areaText.textContent = `The side lengths you entered do not satisfy the Triangle 
+            Inequality Theorem. Review the information above to make sure to not violate 
+            these rules.`;
+    }
     else {
         let area = calculateTriangleAreaHeronsFormula(arr);
         areaText.textContent = `The area is ${area} units squared`;
