@@ -44,7 +44,7 @@ fibonacciSubmitBtn.addEventListener("click", function() {
         fibonacciText.textContent = "Enter a number greater than 0"
     }
     else {
-        fibonacciText.textContent = displayXFibonnaciNumbers(fibonacciNumbers);
+        fibonacciText.textContent = findXFibonnaciNumbers(fibonacciNumbers);
     }
 })
 
@@ -71,37 +71,23 @@ function calculateTriangleAreaHeronsFormula(arr) {
 }
 
 /* 
-    Prints to the console a designated amount of digits from the Fibonacci sequence
+    Prints to the console a designated amount of beginning digits from the Fibonacci sequence
     PARAMS: x: a numeric; the amount of digits you want to print from the 
             Fibonacci sequence. x must be greater than or equal to 2.
     RET: NA
 */
 function logXFibonnaciNumbers(x) {
-    if (x == 1) {
-        console.log(1);
-    } 
-    else {
-        let prev = 0;
-        let curr = 1;
-        console.log(prev);
-        console.log(curr);
-        while (x > 2) {
-            oldCurr = curr;
-            curr += prev;
-            prev = oldCurr;
-            console.log(curr);
-            x--;
-        }
-    }
+    let text = findXFibonnaciNumbers(x);
+    console.log (text);
 }
 
 /* 
-    Displays within the HTML a designated amount of digits from the Fibonacci sequence
+    Finds "x" first digits from the Fibonacci sequence
     PARAMS: x: a numeric; the amount of digits you want to print from the 
             Fibonacci sequence. x must be greater than or equal to 2.
     RET: NA
 */
-function displayXFibonnaciNumbers(x) {
+function findXFibonnaciNumbers(x) {
     if (x === 1) {
         return "1";
     }
