@@ -1,0 +1,36 @@
+.color-grid-item {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    border: 5px rgb(163, 163, 163) solid;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.box_text {
+    margin: auto;
+    color: rgb(36, 36, 36);
+}
+
+.box1 {
+    background-color: blue;
+}
+
+.box2 {
+    background-color: red;
+}
+
+.box3 {
+    background-color: yellow;
+}
+
+.box4 {
+    background-color: lime;
+}
+
+.box5 {
+    background-color: magenta;
+} 
+
+#light_text {
+    color: rgb(208, 208, 208);
+}
