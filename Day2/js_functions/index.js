@@ -7,16 +7,19 @@ let fibonacciCancelBtn = document.getElementById("cancelFibonacci");
 let fibonacciText = document.getElementById("fibonacciText");
 
 areaSubmitBtn.addEventListener("click", function () {
-    let a = parseInt(document.getElementById("sideA").value);
-    let b = parseInt(document.getElementById("sideB").value);
-    let c = parseInt(document.getElementById("sideC").value);
+    let a = parseFloat(document.getElementById("sideA").value);
+    let b = parseFloat(document.getElementById("sideB").value);
+    let c = parseFloat(document.getElementById("sideC").value);
     let arr = [a, b, c];
     if (isNaN(a)|| isNaN(a) || isNaN(a)) {
         areaText.textContent = "Enter all fields to complete the calculation";
     }
+    else if (a <= 0 || b <= 0 || c <= 0) {
+        areaText.textContent = "Enter all fields as positive values";
+    }
     else {
         let area = calculateTriangleAreaHeronsFormula(arr);
-        areaText.textContent = area;
+        areaText.textContent = `The area is ${area} units squared`;
     }
 })
 
@@ -24,20 +27,26 @@ areaCancelBtn.addEventListener("click", function () {
     document.getElementById("sideA").value = NaN;
     document.getElementById("sideB").value = NaN;
     document.getElementById("sideC").value = NaN;
-    areaText.textContent = "no buttons clicked yet"
+    areaText.textContent = "";
 })
 
 fibonacciSubmitBtn.addEventListener("click", function() {
     let fibonacciNumbers = parseInt(document.getElementById("fibonacciRepeatingNumbers").value)
-    logXFibonnaciNumbers(fibonacciNumbers);
-    fibonacciText.textContent = "Done! Check the console";
+    if (isNaN(fibonacciNumbers)) {
+        fibonacciText.textContent = "Enter a number before submitting"
+    }
+    else if (fibonacciNumbers < 2) {
+        fibonacciText.textContent = "Enter a number greater than or equal to 2"
+    }
+    else {
+        fibonacciText.textContent = displayXFibonnaciNumbers(fibonacciNumbers);
+    }
 })
 
 fibonacciCancelBtn.addEventListener("click", function () {
     document.getElementById("fibonacciRepeatingNumbers").value = NaN;
-    fibonacciText.textContent = "no buttons clicked yet";
+    fibonacciText.textContent = "";
 })
-
 
 
 ///// FUNCTIONS ////
@@ -57,7 +66,7 @@ function calculateTriangleAreaHeronsFormula(arr) {
 }
 
 /* 
-    Prints a designated amount of digits from the Fibonacci sequence
+    Prints to the console a designated amount of digits from the Fibonacci sequence
     PARAMS: x: a numeric; the amount of digits you want to print from the 
             Fibonacci sequence. x must be greater than or equal to 2.
     RET: NA
@@ -74,4 +83,26 @@ function logXFibonnaciNumbers(x) {
         console.log(curr);
         x--;
     }
+}
+
+/* 
+    Displays within the HTML a designated amount of digits from the Fibonacci sequence
+    PARAMS: x: a numeric; the amount of digits you want to print from the 
+            Fibonacci sequence. x must be greater than or equal to 2.
+    RET: NA
+*/
+function displayXFibonnaciNumbers(x) {
+    let text = "0, 1";
+    let prev = 0;
+    let curr = 1;
+    console.log(prev);
+    console.log(curr);
+    while (x > 2) {
+        oldCurr = curr;
+        curr += prev;
+        prev = oldCurr;
+        text += ", " + curr;
+        x--;
+    }
+    return text;
 }
