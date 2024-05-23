@@ -8,7 +8,7 @@ import CategoryList from "../CategoryList";
 
 // Week 1: Import the blogPosts and categories from the dummy-data.json file
 // const data = require("../../dummy-data.json");
-const data = require("./dummy_data.json");
+const data = require("../../dummy_data.json");
 const blogs = data.blogPosts.reverse();
 const categories = data.categories;
 
