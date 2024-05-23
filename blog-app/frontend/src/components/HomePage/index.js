@@ -10,9 +10,10 @@ import CategoryList from "../CategoryList";
 // Week 1: Import the blogPosts and categories from the dummy-data.json file
 // const data = require("../../dummy-data.json");
 const data = require("../../dummy_data.json");
-let blogs = data.blogPosts.reverse();
+// let blogs = data.blogPosts.reverse();
+let blogs = data.blogPosts;
 const categories = data.categories;
-blogs.sort((a, b) => (a.id > b.id ? 1 : -1));  // sort for ordering purposes
+// blogs.sort((a, b) => (a.id > b.id ? 1 : -1));  // sort for ordering purposes
 
 
 export default function HomePage() {
