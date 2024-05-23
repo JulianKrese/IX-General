@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function Categories({ blogPost }) {
   return (
@@ -7,10 +8,12 @@ export default function Categories({ blogPost }) {
         return (
           <p
             key={index}
-            className="category-tag rounded-pill p-1 m-1"
+            className="category-tag rounded-pill py-1 m-1 text-center"
             style={{
               color: category.color,
-              backgroundColor: category.color + "33"
+              backgroundColor: category.color + "33",
+              paddingLeft: "10px",
+              paddingRight: "10px"
             }}
           >
             {category.title}
@@ -19,4 +22,8 @@ export default function Categories({ blogPost }) {
       })}
     </div>
   );
+}
+
+Categories.prototype = {
+  blogPost: PropTypes.array.isRequired
 }

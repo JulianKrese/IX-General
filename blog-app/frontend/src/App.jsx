@@ -1,13 +1,13 @@
-import HomePage from "./components/HomePage";
-import CategoriesPage from "./components/CategoriesPage";
-import BlogsPage from "./components/BlogsPage";
+import HomePage from "./pages/Home/index";
+import CategoriesPage from "./pages/Categories/";
+import BlogsPage from "./pages/Blogs/";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <div className="App">
-      <HomePage  />
+      <BlogsPage />
     </div>
   );
 }
