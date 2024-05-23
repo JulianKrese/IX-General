@@ -8,7 +8,7 @@ export default function BlogGrid({ blogPosts }) {
   if (!blogPosts || !blogPosts.length) {
     return null;
   }
-  console.log(blogPosts)
+
   return (
     <>
       <div className="blog-grid-container">
@@ -17,7 +17,7 @@ export default function BlogGrid({ blogPosts }) {
             <BlogItem
               imageOrientation={"top"}
               index={0}
-              blogPost={blogPosts[4]}
+              blogPost={blogPosts[0]}
             />
           )}
         </div>
@@ -28,7 +28,7 @@ export default function BlogGrid({ blogPosts }) {
               <BlogItem
                 imageOrientation={"left"}
                 index={1}
-                blogPost={blogPosts[3]}
+                blogPost={blogPosts[1]}
               />
             </div>
           )}
@@ -42,7 +42,7 @@ export default function BlogGrid({ blogPosts }) {
       </div>
       {blogPosts.length > 3 && (
         <div className="item-4">
-          <BlogItem index={3} blogPost={blogPosts[1]} />
+          <BlogItem index={3} blogPost={blogPosts[3]} />
         </div>
       )}
     </>
