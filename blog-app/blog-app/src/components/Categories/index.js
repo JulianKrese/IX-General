@@ -7,7 +7,7 @@ export default function Categories({ blogPost }) {
         return (
           <p
             key={index}
-            className="category-tag m-2"
+            className="category-tag p-1 m-1"
             style={{
               color: category.color,
               backgroundColor: category.color + "33",
