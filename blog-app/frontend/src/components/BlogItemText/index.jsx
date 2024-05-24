@@ -33,7 +33,7 @@ export default function BlogItemText({ blogPost, headerFontSize }) {
   );
 }
 
-BlogItemText.prototype = {
+BlogItemText.PropType = {
   blogPost: PropType.array.isRequired,
   lastName: PropType.string.isRequired
 }

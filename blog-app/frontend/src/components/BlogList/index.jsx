@@ -23,6 +23,6 @@ export default function BlogList({blogs}) {
   );
 }
 
-// BlogList.prototype = {
-//     blogs: PropType.array.isRequired
-// }
+BlogList.PropType = {
+    blogs: PropType.array.isRequired
+}

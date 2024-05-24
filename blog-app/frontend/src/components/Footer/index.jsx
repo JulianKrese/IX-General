@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function index() {
+export default function Footer() {
   return (
     <div class="container">
         <footer class="py-3 my-4">

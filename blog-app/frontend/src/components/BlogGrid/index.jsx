@@ -49,6 +49,6 @@ export default function BlogGrid({ blogPosts }) {
   );
 }
 
-BlogGrid.prototype = {
+BlogGrid.PropType = {
   blogPosts: PropType.array.isRequired
 }
