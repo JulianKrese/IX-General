@@ -8,7 +8,7 @@ export default function CategoriesList({
 }) {
 
     return categories.map((category, index) => {
-      return categoryId === category.id.toString() ? (
+      return categoryId === category.id? (
         <button
           key={index}
           onClick={() => setCategoryId(category.id)}

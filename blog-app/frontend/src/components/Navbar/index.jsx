@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg">
       <div style={{ margin: "0px 5%" }} className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="home">
           iX Software Engineering Blog
         </a>
         <button
@@ -21,22 +21,22 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="src/components/HomePage/">
+              <a className="nav-link active" aria-current="page" href="/home">
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="src/components/BlogsPage/">
+              <a className="nav-link active" aria-current="page" href="/blogs">
                 Blogs
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="src/components/CategoriesPage/">
+              <a className="nav-link active" aria-current="page" href="/categories">
                 Categories
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <a className="nav-link active" aria-current="page" href="/about">
                 About
               </a>
             </li>
