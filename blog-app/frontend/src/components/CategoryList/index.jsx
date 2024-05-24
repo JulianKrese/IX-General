@@ -38,6 +38,6 @@ export default function CategoryList({ categories }) {
   );
 }
 
-CategoryList.PropTypes = {
+CategoryList.prototype = {
   categories: PropTypes.array.isRequired
 }

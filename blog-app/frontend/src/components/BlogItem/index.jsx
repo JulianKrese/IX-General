@@ -47,7 +47,7 @@ export default function BlogItem({
   }
 }
 
-BlogItem.PropTypes = {
+BlogItem.prototype = {
   index: PropTypes.number.isRequired,
   blogPost: PropTypes.object.isRequired,
   imageOrientation: PropTypes.string

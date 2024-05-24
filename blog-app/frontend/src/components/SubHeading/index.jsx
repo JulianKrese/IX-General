@@ -5,6 +5,6 @@ export default function SubHeading({subHeading}) {
     return <p className="page-subtitle"> {subHeading} </p>;
 }
 
-SubHeading.PropTypes = {
+SubHeading.prototype = {
     SubHeading: PropTypes.string.isRequired
 }

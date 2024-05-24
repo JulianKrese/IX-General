@@ -24,6 +24,6 @@ export default function Categories({ blogPost }) {
   );
 }
 
-Categories.PropTypes = {
+Categories.categories = {
   blogPost: PropTypes.array.isRequired
 }
