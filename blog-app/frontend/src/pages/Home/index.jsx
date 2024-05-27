@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Heading from "../../components/Heading";
 import Navbar from "../../components/Navbar";
@@ -7,13 +7,55 @@ import Footer from "../../components/Footer";
 import SubHeading from "../../components/SubHeading";
 import CategoryList from "../../components/CategoryList";
 
-// Week 1: Import the blogPosts and categories from the dummy-data.json file
-const data = require("../../dummy_data.json");
-const blogs = data.blogPosts;
-const categories = data.categories;
+import blogService from "../../services/blogService";
+import categoriesService from "../../services/categoriesService";
 
 
 export default function HomePage() {
+
+  const [blogs, setBlogs] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect( () => {
+    const fetchBlogs = async () => {
+      try {
+        const blogsResults = await blogService.getBlogs();
+        setBlogs(blogsResults);
+      }
+      catch (error) {
+        throw new Error(error);
+      }
+    }
+    fetchBlogs();
+  }, [blogs]);
+
+  useEffect( () => {
+    const fetchCategories = async () => {
+      try {
+        const categoriesResults = await categoriesService.getCategories();
+        setCategories(categoriesResults);
+      }
+      catch (error) {
+        throw new Error(error);
+      }
+    }
+    fetchCategories();
+  }, [categories]);
+
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     try {
+  //       const categoriesResults = await categoriesService.getCategories();
+  //       setCategories(categoriesResults);
+  //     }
+  //     catch (error) {
+  //       throw new Error(error);
+  //     }
+  //   }
+  //   fetchCategories();
+  // });
+
+
   return (
     <>
       <Navbar />

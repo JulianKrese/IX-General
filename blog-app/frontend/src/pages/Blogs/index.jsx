@@ -7,20 +7,43 @@ import Footer from "../../components/Footer";
 import SubHeading from "../../components/SubHeading";
 import CategoriesList from "../../components/CategoriesList";
 
-// Week 1: Import the blogPosts and categories from the dummy-data.json file
-const data = require("../../dummy_data.json");
-const blogsDummy = data.blogPosts;
-const categoriesDummy = data.categories;
+import blogService from "../../services/blogService";
+import categoriesService from "../../services/categoriesService";
+
 
 export default function BlogsPage() {
 
-  const [blogs, setBlogs] = useState(blogsDummy);
-  // const [displayBlogs, setDisplayBlogs] = useState(blogsDummy);
-  const [categoryId, setCategoryId] = useState();
+  const [blogs, setBlogs] = useState([]);
+  const [categoryId, setCategoryId] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  const fetchBlogs = async () => {
+    try {
+      const blogsResults = await blogService.getBlogs();
+      setBlogs(blogsResults);
+    }
+    catch (error) {
+      throw new Error(error);
+    }
+  }
+  fetchBlogs();
+
+  useEffect( () => {
+    const fetchCategories = async () => {
+      try {
+        const categoriesResults = await categoriesService.getCategories();
+        setCategories(categoriesResults);
+      }
+      catch (error) {
+        throw new Error(error);
+      }
+    }
+    fetchCategories();
+  }, [categories]);
 
   useEffect( () => {
     if (categoryId) {
-      const filteredBlogs = blogsDummy.filter((blog) => {
+      const filteredBlogs = blogs.filter((blog) => {
         return blog.categories.some((category) => category.id === categoryId)
       });
       setBlogs(filteredBlogs);
@@ -34,7 +57,7 @@ export default function BlogsPage() {
         <Heading />
         <div className="scroll-menu">
           <CategoriesList 
-            categories={categoriesDummy}
+            categories={categories}
             categoryId={categoryId}
             setCategoryId={setCategoryId}
             >
