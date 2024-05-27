@@ -1,11 +1,10 @@
-import HomePage from "./pages/Home/index";
+import HomePage from "./pages/Home/";
 import CategoriesPage from "./pages/Categories/";
 import BlogsPage from "./pages/Blogs/";
 import AboutPage from "./pages/About/"
 import BlogPage from "./pages/Blog/"
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import { Link, useNavigate, useParams } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
     element: <AboutPage />,
   },
   {
-    path: "/blog:blogId?",
+    path: "/blog/:blogId?",
     element: <BlogPage />,
   },
   {

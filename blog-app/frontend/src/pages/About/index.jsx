@@ -1,21 +1,11 @@
 import React from "react"
-
-import Navbar from "../../components/Navbar";
-import Heading from "../../components/Heading";
-import SubHeading from "../../components/SubHeading";
-
-import Footer from "../../components/Footer";
+import {useParams} from "react-router-dom";
 
 export default function AboutPage() {
-  return (
-    <div>
-        <Navbar />
-        <Heading />
-        <SubHeading subHeading={"About Me"}/>
+
+    return (
         <div>
-            nothing here yet
+        To be about page
         </div>
-        <Footer />
-    </div>
-  )
+    )
 }
