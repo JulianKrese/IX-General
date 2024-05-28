@@ -1,14 +1,20 @@
 {
   "name": "ix-blog-app",
   "version": "1.0.0",
-  "description": "This is the backend server nfor my awesome blog app",
-  "main": "index.js",
+  "description": "This is the backend server for my awesome blog app",
+  "main": "./src/index.js",
   "scripts": {
+    "dev": "nodemon .",
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Julian Krese",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.1"
   }
 }
