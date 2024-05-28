@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 import Heading from "../../components/Heading";
 import Navbar from "../../components/Navbar";
