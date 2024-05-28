@@ -1,41 +1,35 @@
+/* Create */
+
 const createBlog = (req, res) => {
-    res.status(200).json( {
-        message: "blog created!",
-        data: []
-    })
-}
+    res.status(200).json({ message: "Create new blog!", data: [] });
+};
 
-const getAllBlogs = (req, res) => {
-    res.status(200).json( {
-        message: "get all blogs!",
-        data: []
-    })
-}
+/* Read */
 
-const createBlogsById = (req, res) => {
-    res.status(200).json( {
-        message: "get blog by id!",
-        data: []
-    })
-}
+const getBlogs = (req, res) => {
+    res.status(200).json({ message: "Return all blogs!", data: [] });
+};
+  
+const getBlog = (req, res) => {
+    res.status(200).json({ message: "Return blog by ID!", data: [] });
+};
 
-const createBlogsByCategoryId = (req, res) => {
-    res.status(200).json( {
-        message: "get blog by category id!",
-        data: []
-    })
-}
+/* Update */
+  
+const updateBlog = (req, res) => {
+    res.status(200).json({ message: "Update blog by ID!", data: [] });
+};
+  
+/* Delete */
 
-const udpateBlogById = (req, res) => {
-    res.status(200).json( {
-        message: "updating blog b id!",
-        data: []
-    })
-}
-
-const deleteBlogById = (req, res) => {
-    res.status(200).json( {
-        message: "deleting blog by id!",
-        data: []
-    })
-}
+const deleteBlog = (req, res) => {
+    res.status(200).json({ message: "Delete blog by ID!", data: [] });
+};
+  
+module.exports = {
+    getBlogs,
+    getBlog,
+    createBlog,
+    updateBlog,
+    deleteBlog,
+};

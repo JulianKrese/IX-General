@@ -1,34 +1,40 @@
 const express = require("express");
 const router = express.Router();
-const blogController = require("../controllers/blogs");
 
+const {
+  createBlog,
+  getBlogs,
+  getBlog,
+  updateBlog,
+  deleteBlog,
+} = require("../controllers/blogs");
 
 /* Create */
 
 router.post("/", (req, res) => {
-    blogController.createBlogs(req, res);
-})
-
+  createBlog(req, res);
+});
 
 /* Read */
 
 router.get("/", (req, res) => {
-    
-})
+  getBlogs(req, res);
+});
 
+router.get("/:id", (req, res) => {
+  getBlog(req, res);
+});
 
 /* Update */
 
-router.put("/", (req, res) => {
-
-})
-
+router.put("/:id", (req, res) => {
+  updateBlog(req, res);
+});
 
 /* Delete */
 
-router.delete("/", (req, res) => {
-
-})
-
+router.delete("/:id", (req, res) => {
+  deleteBlog(req, res);
+});
 
 module.exports = router;
