@@ -3,7 +3,11 @@ import PropType from "prop-types";
 import BlogItem from "../BlogItem";
 
 export default function BlogList({blogs}) {
-  console.log(blogs)
+
+  if (!blogs && !blogs?.length) {
+    return null;
+  }
+
   return (
     <div className="d-flex flex-wrap">
       {blogs.map((blog, index) => {
