@@ -42,19 +42,6 @@ export default function HomePage() {
     fetchCategories();
   }, [categories]);
 
-  // useEffect(() => {
-  //   const fetchCategories = async () => {
-  //     try {
-  //       const categoriesResults = await categoriesService.getCategories();
-  //       setCategories(categoriesResults);
-  //     }
-  //     catch (error) {
-  //       throw new Error(error);
-  //     }
-  //   }
-  //   fetchCategories();
-  // });
-
 
   return (
     <>

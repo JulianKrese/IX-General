@@ -6,12 +6,26 @@ import Footer from "../../components/Footer";
 import SubHeading from "../../components/SubHeading";
 import CategoryList from "../../components/CategoryList";
 
-// Week 1: Import the blogPosts and categories from the dummy-data.json file
-const data = require("../../dummy_data.json");
-const blogs = data.blogPosts;
-const categories = data.categories;
+import categoriesService from "../../services/categoriesService";
+
 
 export default function CategoriesPage() {
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect( () => {
+    const fetchCategories = async () => {
+      try {
+        const categoriesResults = await categoriesService.getCategories();
+        setCategories(categoriesResults);
+      }
+      catch (error) {
+        throw new Error(error);
+      }
+    }
+    fetchCategories();
+  }, [categories]);
+
   return (
     <>
       <Navbar />
