@@ -10,7 +10,7 @@ const getBlogs = (req, res) => {
     res.status(200).json({ message: "Return all blogs!", data: [] });
 };
   
-const getBlog = (req, res) => {
+const getBlogById = (req, res) => {
     res.status(200).json({ message: "Return blog by ID!", data: [] });
 };
 
@@ -28,7 +28,7 @@ const deleteBlog = (req, res) => {
   
 module.exports = {
     getBlogs,
-    getBlog,
+    getBlogById,
     createBlog,
     updateBlog,
     deleteBlog,

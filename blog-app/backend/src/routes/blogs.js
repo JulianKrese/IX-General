@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   createBlog,
   getBlogs,
-  getBlog,
+  getBlogById,
   updateBlog,
   deleteBlog,
 } = require("../controllers/blogs");
@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  getBlog(req, res);
+  getBlogById(req, res);
 });
 
 /* Update */
