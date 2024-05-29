@@ -22,7 +22,7 @@ const getBlogsByCategoryId = async (categoryId) => {
 
     try {
         const data = await fetch(
-            "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/blogs/category?id=", 
+            "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/blogs/category/"+categoryId,
             {
                 method: "GET",
                 headers: {

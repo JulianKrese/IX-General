@@ -22,7 +22,7 @@ export default function BlogsPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const blogsRes = await blogService.getBlogsByCategoryId(categoryId);
+      const blogsRes = await blogService.getBlogsByCategoryId(categoryId||null);
       const categoriesRes = await categoryService.getCategories();
 
       setBlogs(blogsRes);
@@ -31,7 +31,7 @@ export default function BlogsPage() {
     };
 
     fetchData();
-  }, [categoryId]);
+  }, [categoryId, loading]);
 
   const CategoriesList = ({ categoryId }) => {
     if (!categories && !categories?.length) {
@@ -41,10 +41,10 @@ export default function BlogsPage() {
     return categories.map((category) => {
       return categoryId === category.id ? (
         <Link
-          className="link"
+          className="link "
           key={category.id}
           to={"/blogs/" + category.id}
-          style={{ color: "blue" }}
+          style={{ color: "blue"}}
           onClick={() => setLoading(true)}
         >
           <p key={category.id}>{category.title}</p>
@@ -82,7 +82,7 @@ export default function BlogsPage() {
           <CategoriesList categoryId={categoryId} />
         </div>
         <SubHeading subHeading={"Blog Posts"} />
-        <BlogList blogPosts={blogs} />
+        <BlogList blogs={blogs} />
       </div>
 
       <Footer />
