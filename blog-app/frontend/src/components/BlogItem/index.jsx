@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 import BlogItemText from "../BlogItemText";
 
@@ -8,16 +9,32 @@ import "./index.css";
 
 export default function BlogItem({
   index,
-  blogPost,
-  setBlog,
+  blog,
   imageOrientation,
+  onBlogEdit,
+  onBlogDelete,
 }) {
+
+  const EditButtonsContainer = () => {
+    return (
+      <EditButtons
+        onEdit={() => onBlogEdit(blog)}
+        onDelete={() => onBlogDelete(blog)}
+      />
+    );
+  };
+
+  const navigate = useNavigate();
+  const navigateToBlog = () => {
+    
+  }
+
   if (imageOrientation === "top") {
     return (
       <div
         key={index}
         className="card-1"
-        onClick={() => console.log("TODO: nav to blog")}
+        onClick={navigateToBlog}
       >
         <img src={blogPost.image} className="card-img-top" alt="..." />
         <div className="card-text-bottom">
@@ -33,7 +50,7 @@ export default function BlogItem({
       <div
         key={index}
         className="card-2"
-        onClick={() => console.log("TODO: nav to blog")}
+        onClick={navigateToBlog}
       >
         <img src={blogPost.image} className="card-img-left" alt="..." />
         <div className="card-text-right">

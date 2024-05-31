@@ -1,120 +1,176 @@
 const createBlog = async (blog) => {
-    try {
-        const data = await fetch(
-            "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/blogs", 
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(blog),
-            });
-        const blogsAPIData = await data.json();
-        return blogsAPIData.data;
+    const response = await fetch("http://localhost:8000/api/blogs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(blog),
+    });
+  
+    if (!response.ok) {
+      try {
+        let res = await response.json();
+        throw res.message || JSON.stringify(res);
+      } catch (err) {
+        console.log(err);
+        const error = new Error("Something went wrong");
+        throw error.message;
+      }
     }
-    catch (error) {
-        throw new Error(error);
+  
+    const blogsApiData = await response.json();
+    return blogsApiData;
+  };
+  
+  const fetchBlogs = async () => {
+    const response = await fetch("http://localhost:8000/api/blogs", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  
+    if (!response.ok) {
+      try {
+        let res = await response.json();
+        throw res.message || JSON.stringify(res);
+      } catch (err) {
+        console.log(err);
+        const error = new Error("Something went wrong");
+        throw error.message;
+      }
     }
-}
-
-
-const getBlogs = async () => {
-    try {
-        const data = await fetch(
-            "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/blogs", 
-            {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            });
-        const blogsAPIData = await data.json();
-        return blogsAPIData.data;
+  
+    const blogsApiData = await response.json();
+    return blogsApiData;
+  };
+  
+  const fetchBlogByID = async (id) => {
+    const response = await fetch("http://localhost:8000/api/blogs/" + id, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      try {
+        let res = await response.json();
+        throw res.message || JSON.stringify(res);
+      } catch (err) {
+        console.log(err);
+        const error = new Error("Something went wrong");
+        throw error.message;
+      }
     }
-    catch (error) {
-        throw new Error(error);
+  
+    const blogsApiData = await response.json();
+    return blogsApiData;
+  };
+  
+  const fetchBlogsByCategoryId = async (categoryId) => {
+    const response = await fetch(
+      "http://localhost:8000/api/blogs/categories/" + categoryId,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      try {
+        let res = await response.json();
+        throw res.message || JSON.stringify(res);
+      } catch (err) {
+        console.log(err);
+        const error = new Error("Something went wrong");
+        throw error.message;
+      }
     }
-}
-
-const getBlogsById = async (blogId) => {
-    try {
-        const data = await fetch(
-            "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/blogs/category/"+blogId,
-            {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            });
-        const blogsByIdAPIData = await data.json();
-        return blogsByIdAPIData.data;
+  
+    const blogsApiData = await response.json();
+    return blogsApiData;
+  };
+  
+  const fetchBlogsByAuthorId = async (authorId) => {
+    const response = await fetch(
+      "http://localhost:8000/api/blogs/author/" + authorId,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      try {
+        let res = await response.json();
+        throw res.message || JSON.stringify(res);
+      } catch (err) {
+        console.log(err);
+        const error = new Error("Something went wrong");
+        throw error.message;
+      }
     }
-    catch (error) {
-        throw new Error(error);
+  
+    const blogsApiData = await response.json();
+    return blogsApiData;
+  };
+  
+  const updateBlog = async (blog) => {
+    const response = await fetch("http://localhost:8000/api/blogs/" + blog.id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(blog),
+    });
+    if (!response.ok) {
+      try {
+        let res = await response.json();
+        throw res.message || JSON.stringify(res);
+      } catch (err) {
+        console.log(err);
+        const error = new Error("Something went wrong");
+        throw error.message;
+      }
     }
-}
-
-const getBlogsByCategoryId = async (categoryId) => {
-    try {
-        const data = await fetch(
-            "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/blogs/category/"+categoryId,
-            {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            });
-        const blogsByIdAPIData = await data.json();
-        return blogsByIdAPIData.data;
+  
+    const blogsApiData = await response.json();
+    return blogsApiData;
+  };
+  
+  const deleteBlog = async (id) => {
+    const response = await fetch("http://localhost:8000/api/blogs/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  
+    if (!response.ok) {
+      try {
+        let res = await response.json();
+        throw res.message || JSON.stringify(res);
+      } catch (err) {
+        console.log(err);
+        const error = new Error("Something went wrong");
+        throw error.message;
+      }
     }
-    catch (error) {
-        throw new Error(error);
-    }
-}
-
-const updateBlogById = async (blogId) => {
-    try {
-        const data = await fetch(
-            "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/blogs/category/"+blogId,
-            {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            });
-        const blogsByIdAPIData = await data.json();
-        return blogsByIdAPIData.data;
-    }
-    catch (error) {
-        throw new Error(error);
-    }
-}
-
-const deleteBlogById = async (blogId) => {
-    try {
-        const data = await fetch(
-            "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/blogs/category/"+blogId,
-            {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            });
-        const blogsByIdAPIData = await data.json();
-        return blogsByIdAPIData.data;
-    }
-    catch (error) {
-        throw new Error(error);
-    }
-}
-
-const blogService = {
+  
+    const blogsApiData = await response.json();
+    return blogsApiData;
+  };
+  
+  const blogService = {
     createBlog,
-    getBlogs,
-    getBlogsById,
-    getBlogsByCategoryId,
-    updateBlogById,
-    deleteBlogById
-}
-
-export default blogService;
+    fetchBlogs,
+    fetchBlogByID,
+    fetchBlogsByCategoryId,
+    fetchBlogsByAuthorId,
+    updateBlog,
+    deleteBlog,
+  };
+  
+  export default blogService;

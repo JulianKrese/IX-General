@@ -1,82 +1,105 @@
 const createCategory = async (category) => {
-    try {
-        const data = await fetch(
-            "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/categories", 
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(category),
-            });
-        const categoriesAPIData = await data.json();
-        return categoriesAPIData.data;
+    const response = await fetch("http://localhost:8000/api/categories", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(category),
+    });
+  
+    if (!response.ok) {
+      try {
+        let res = await response.json();
+        throw res.message || JSON.stringify(res);
+      } catch (err) {
+        console.log(err);
+        const error = new Error("Something went wrong");
+        throw error.message;
+      }
     }
-    catch (error) {
-        throw new Error(error);
+  
+    const categoriesApiData = await response.json();
+    return categoriesApiData;
+  };
+  
+  const fetchCategories = async () => {
+    const response = await fetch("http://localhost:8000/api/categories", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  
+    if (!response.ok) {
+      try {
+        let res = await response.json();
+        throw res.message || JSON.stringify(res);
+      } catch (err) {
+        console.log(err);
+        const error = new Error("Something went wrong");
+        throw error.message;
+      }
     }
-}
-
-const fetchCategories = async () => {
-    try {
-        const data = await fetch(
-            "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/categories", 
-            {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            });
-        const categoriesAPIData = await data.json();
-        return categoriesAPIData.data;
+  
+    const categoriesApiData = await response.json();
+    return categoriesApiData;
+  };
+  
+  const updateCategory = async (category) => {
+    const response = await fetch(
+      "http://localhost:8000/api/categories/" + category.id,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(category),
+      }
+    );
+  
+    if (!response.ok) {
+      try {
+        let res = await response.json();
+        throw res.message || JSON.stringify(res);
+      } catch (err) {
+        console.log(err);
+        const error = new Error("Something went wrong");
+        throw error.message;
+      }
     }
-    catch (error) {
-        throw new Error(error);
+  
+    const categoriesApiData = await response.json();
+    return categoriesApiData;
+  };
+  
+  const deleteCategory = async (id) => {
+    const response = await fetch("http://localhost:8000/api/categories/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  
+    if (!response.ok) {
+      try {
+        let res = await response.json();
+        throw res.message || JSON.stringify(res);
+      } catch (err) {
+        console.log(err);
+        const error = new Error("Something went wrong");
+        throw error.message;
+      }
     }
-}
-
-
-const updateCategory = async (categoryId) => {
-    try {
-        const data = await fetch(
-            "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/categories" + categoryId, 
-            {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            });
-        const categoriesAPIData = await data.json();
-        return categoriesAPIData.data;
-    }
-    catch (error) {
-        throw new Error(error);
-    }
-}
-
-const deleteCategoryById = async (categoryId) => {
-    try {
-        const data = await fetch(
-            "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/categories" + categoryId, 
-            {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            });
-        const categoriesAPIData = await data.json();
-        return categoriesAPIData.data;
-    }
-    catch (error) {
-        throw new Error(error);
-    }
-}
-
-const categoriesService = {
+  
+    const categoriesApiData = await response.json();
+    return categoriesApiData;
+  };
+  
+  const categoryService = {
     createCategory,
     fetchCategories,
     updateCategory,
-    deleteCategoryById,
+    deleteCategory,
   };
-
-export default categoriesService;
+  
+  export default categoryService;

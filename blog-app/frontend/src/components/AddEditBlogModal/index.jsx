@@ -29,6 +29,14 @@ export default function AddEditBlogModal({
     return null;
   }
 
+  const onSubmit = (e) => {
+
+  };
+
+  const isFormValid = () => {
+
+  };
+
   return (
     <div>
       <div

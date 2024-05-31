@@ -10,6 +10,7 @@ import AddEditBlogModal from "../../components/AddEditBlogModal";
 import Loading from "../../components/Loading";
 import SuccessToast from "../../components/SuccessToast";
 import ErrorToast from "../../components/ErrorToast";
+import DeleteBlogModal from "../../components/DeleteBlogModal";
 
 import "./index.css";
 
@@ -21,22 +22,44 @@ export default function BlogsPage() {
 
   const [blogs, setBlogs] = useState();
   const [addBlog, setAddBlog] = useState();
+  const [deleteBlog, setDeleteBlog] = useState();
   const [categories, setCategories] = useState();
 
   const [loading, setLoading] = useState(true);
   const [isSuccess, setIsSuccess] = useState();
   const [isError, setIsError] = useState();
   const [message, setMessage] = useState();
+  
+
+
+  /* call first time */
+  const initialLoad = async () => {
+    try {
+      const blogsResult = await blogService.fetchBlogsByCategoryId(categoryId||null);
+      const categoriesResult = await categoryService.fetchCategories();
+      
+      setBlogs(blogsResult.data);
+      setCategories(categoriesResult);
+    }
+    catch (error) {
+      // run it back
+      initialLoad();
+    }
+  }
+  initialLoad();
+
+
+
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
 
       const blogsResult = await blogService.getBlogsByCategoryId(categoryId||null);
-      const categoriesResult = await categoryService.getCategories();
+      const categoriesResult = await categoryService.fetchCategories();
 
-      setBlogs(blogsResult);
-      setCategories(categoriesResult);
+      setBlogs(blogsResult.data);
+      setCategories(categoriesResul.AddEditBlogModal);
       setLoading(false);
     };
 
@@ -83,6 +106,21 @@ export default function BlogsPage() {
     }
     setAddBlog(null);
   }
+
+  const removeBlog = async (blog) => {
+    try {
+      const newBlog = await blogService.deleteBlog(blog.id);
+      setIsSuccess(true);
+      setMessage(newBlog.message);
+      setBlogs((prev) => {
+        return prev.filter((x) => x.id !== blog.id);
+      });
+    } catch (err) {
+      setIsError(true);
+      setMessage(err);
+    }
+    setDeleteBlog(null);
+  };
 
 
   const CategoriesList = ({ categoryId }) => {
@@ -157,6 +195,11 @@ export default function BlogsPage() {
         onClose={() => {
           setIsError(false);
         }}
+      />
+      <DeleteBlogModal
+        deleteBlog={deleteBlog}
+        removeBlog={removeBlog}
+        onClose={() => setDeleteBlog(null)}
       />
     </>
   );

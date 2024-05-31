@@ -20,7 +20,7 @@ export default function HomePage() {
     const fetchBlogs = async () => {
       try {
         const blogsResults = await blogService.getBlogs();
-        setBlogs(blogsResults);
+        setBlogs(blogsResults.data);
       }
       catch (error) {
         throw new Error(error);
@@ -33,7 +33,7 @@ export default function HomePage() {
     const fetchCategories = async () => {
       try {
         const categoriesResults = await categoriesService.getCategories();
-        setCategories(categoriesResults);
+        setCategories(categoriesResults.data);
       }
       catch (error) {
         throw new Error(error);

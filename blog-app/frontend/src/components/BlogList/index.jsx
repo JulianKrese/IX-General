@@ -2,6 +2,8 @@ import React from "react";
 import PropType from "prop-types";
 import BlogItem from "../BlogItem";
 
+import "./index.css";
+
 export default function BlogList({blogs}) {
 
   if (!blogs && !blogs?.length) {
