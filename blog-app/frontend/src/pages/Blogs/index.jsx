@@ -148,7 +148,7 @@ export default function BlogsPage() {
         show={isSuccess}
         message={message}
         onClose={() => {
-          setIsSucces(false);
+          setIsSuccess(false);
         }}
       />
       <ErrorToast
