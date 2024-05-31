@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+
 import Navbar from "../../components/Navbar";
 import Heading from "../../components/Heading";
 import BlogList from "../../components/BlogList";
 import Footer from "../../components/Footer";
 import SubHeading from "../../components/SubHeading";
-
-import { useParams, Link } from "react-router-dom";
+import AddEditBlogModal from "../../components/AddEditBlogModal";
+import Loading from "../../components/Loading";
+import SuccessToast from "../../components/SuccessToast";
+import ErrorToast from "../../components/ErrorToast";
 
 import "./index.css";
 
@@ -16,22 +20,70 @@ export default function BlogsPage() {
   const { categoryId } = useParams();
 
   const [blogs, setBlogs] = useState();
+  const [addBlog, setAddBlog] = useState();
   const [categories, setCategories] = useState();
 
   const [loading, setLoading] = useState(true);
+  const [isSuccess, setIsSuccess] = useState();
+  const [isError, setIsError] = useState();
+  const [message, setMessage] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
-      const blogsRes = await blogService.getBlogsByCategoryId(categoryId||null);
-      const categoriesRes = await categoryService.getCategories();
+      setLoading(true);
 
-      setBlogs(blogsRes);
-      setCategories(categoriesRes);
+      const blogsResult = await blogService.getBlogsByCategoryId(categoryId||null);
+      const categoriesResult = await categoryService.getCategories();
+
+      setBlogs(blogsResult);
+      setCategories(categoriesResult);
       setLoading(false);
     };
 
     fetchData();
-  }, [categoryId, loading]);
+  }, [categoryId]);
+
+  const onBlogAddClick = () => {
+    setAddBlog({
+      title: "",
+      author: {
+        id: 1,
+        firstName: "",
+        lastName: "",
+        bio: "",
+        image: ""
+      },
+      categories: [],
+      description: "",
+      image: "",
+      content: [{
+        sectionHeader: "",
+        sectionBody: "",
+      }]
+    })
+  }
+
+
+  const createBlogPost = async (blog) => {
+    try {
+      const newBlog = await blogService.createBlog(blog);
+      setIsSuccess(true);
+      setMessage(newBlog.message);
+      
+      setBlogs((prev) => {
+        if (newBlog.data.categories.some((x) => x.id === categoryId)) {
+          prev?.unshift(newBlog.data);
+        }
+        return prev;
+      });
+    }
+    catch (error) {
+      setIsError(true);
+      setMessage(error);
+    }
+    setAddBlog(null);
+  }
+
 
   const CategoriesList = ({ categoryId }) => {
     if (!categories && !categories?.length) {
@@ -64,13 +116,7 @@ export default function BlogsPage() {
   };
 
   if (loading) {
-    return (
-      <div className="d-flex justify-content-center align-items-center mt-5">
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
+    return <Loading />
   }
 
   return (
@@ -81,11 +127,37 @@ export default function BlogsPage() {
         <div className="scroll-menu">
           <CategoriesList categoryId={categoryId} />
         </div>
-        <SubHeading subHeading={"Blog Posts"} />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <SubHeading subHeading={"Blog Posts"} />
+          <button
+            className="btn btn-outline-dark h-75"
+            onClick={onBlogAddClick}
+          >
+            ADD BLOG
+          </button>
+        </div>
         <BlogList blogs={blogs} />
+        <AddEditBlogModal
+          categories={categories}
+          addBlog={addBlog}
+          createBlogPost={createBlogPost}
+        />
       </div>
-
       <Footer />
+      <SuccessToast
+        show={isSuccess}
+        message={message}
+        onClose={() => {
+          setIsSucces(false);
+        }}
+      />
+      <ErrorToast
+        show={isError}
+        message={message}
+        onClose={() => {
+          setIsError(false);
+        }}
+      />
     </>
   );
 }

@@ -95,9 +95,9 @@ const deleteBlog = async (req, res) => {
 };
 
 module.exports = {
+    createBlog,
     getBlogs,
     getBlogById,
-    createBlog,
     updateBlog,
     deleteBlog,
 };
