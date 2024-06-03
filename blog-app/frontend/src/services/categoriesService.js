@@ -1,5 +1,5 @@
 const createCategory = async (category) => {
-    const response = await fetch("http://localhost:8000/api/categories", {
+    const response = await fetch("http://localhost:8000/categories", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +23,7 @@ const createCategory = async (category) => {
   };
   
   const fetchCategories = async () => {
-    const response = await fetch("http://localhost:8000/api/categories", {
+    const response = await fetch("http://localhost:8000/categories", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ const createCategory = async (category) => {
   
   const updateCategory = async (category) => {
     const response = await fetch(
-      "http://localhost:8000/api/categories/" + category.id,
+      "http://localhost:8000/categories/" + category.id,
       {
         method: "PUT",
         headers: {
@@ -73,7 +73,7 @@ const createCategory = async (category) => {
   };
   
   const deleteCategory = async (id) => {
-    const response = await fetch("http://localhost:8000/api/categories/" + id, {
+    const response = await fetch("http://localhost:8000/categories/" + id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

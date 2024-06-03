@@ -19,7 +19,7 @@ export default function HomePage() {
   useEffect( () => {
     const fetchBlogs = async () => {
       try {
-        const blogsResults = await blogService.getBlogs();
+        const blogsResults = await blogService.fetchBlogs();
         setBlogs(blogsResults.data);
       }
       catch (error) {
@@ -32,7 +32,7 @@ export default function HomePage() {
   useEffect( () => {
     const fetchCategories = async () => {
       try {
-        const categoriesResults = await categoriesService.getCategories();
+        const categoriesResults = await categoriesService.fetchCategories();
         setCategories(categoriesResults.data);
       }
       catch (error) {

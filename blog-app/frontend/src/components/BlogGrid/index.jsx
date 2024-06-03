@@ -1,24 +1,20 @@
 import React from "react";
 import PropType from "prop-types";
 
-import "./index.css";
 import BlogItem from "../BlogItem";
+
+import "./index.css";
 
 export default function BlogGrid({ blogPosts }) {
   if (!blogPosts || !blogPosts.length) {
     return null;
   }
-
   return (
     <>
-      <div className="blog-grid-container w-100">
+      <div className="blog-grid-container py-2 w-100">
         <div className="item-1 w-50">
           {blogPosts.length > 0 && (
-            <BlogItem
-              imageOrientation={"top"}
-              index={0}
-              blog={blogPosts[0]}
-            />
+            <BlogItem imageOrientation={"top"} index={0} blog={blogPosts[0]} />
           )}
         </div>
 
@@ -49,6 +45,6 @@ export default function BlogGrid({ blogPosts }) {
   );
 }
 
-BlogGrid.PropType = {
-  blogPosts: PropType.array.isRequired
-}
+BlogGrid.prototype = {
+  blogPost: PropType.array.isRequired,
+};

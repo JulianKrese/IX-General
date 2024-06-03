@@ -5,12 +5,12 @@ import Heading from "../../components/Heading";
 import CategoryList from "../../components/CategoriesList";
 import Footer from "../../components/Footer";
 import Loading from "../../components/Loading";
-
-import categoryService from "../../services/categoryService";
 import SuccessToast from "../../components/SuccessToast";
 import ErrorToast from "../../components/ErrorToast";
 import AddEditCategoryModal from "../../components/AddEditCategoryModal";
 import DeleteCategoryModal from "../../components/DeleteCategoryModal";
+
+import categoryService from "../../services/categoriesService";
 
 export default function CategoriesPage() {
   const [categories, setCategories] = useState([]);
@@ -62,7 +62,7 @@ export default function CategoriesPage() {
       setIsSuccess(true);
       setMessage(newCategory.message);
       setCategories((prev) => {
-        return [...prev, newCategory];
+        return [...prev, newCategory.data];
       });
     } catch (err) {
       setIsError(true);
@@ -118,7 +118,10 @@ export default function CategoriesPage() {
       <Navbar />
       <div className="container">
         <Heading />
-        <SubHeading subHeading={"Categories"} />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <p className="page-subtitle">Categories</p>
+          <AddButton />
+        </div>
         <CategoryList
           categories={categories}
           onEdit={onCategoryUpdate}

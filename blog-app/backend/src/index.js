@@ -8,7 +8,7 @@ connectDB();
 const blogRoutes = require("./routes/blogs");
 const categoryRoutes = require("./routes/categories");
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 const app = express();
 
 app.use(cors());

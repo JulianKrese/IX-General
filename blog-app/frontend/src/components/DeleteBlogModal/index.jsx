@@ -97,4 +97,5 @@ export default function DeleteBlogModal({ deleteBlog, removeBlog, onClose }) {
 DeleteBlogModal.prototype = {
   deleteBlog: PropTypes.object,
   removeBlog: PropTypes.func,
+  onClose: PropTypes.func,
 };

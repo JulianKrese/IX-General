@@ -2,16 +2,32 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <div class="container">
-        <footer class="py-3 my-4">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Blogs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Categories</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+    <div className="container">
+        <footer className="py-3 my-4">
+            <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+              <li>
+                <a className="nav-link px-2 text-body-secondary" aria-current="page" href="/home">
+                  Home
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link px-2 text-body-secondary" aria-current="page" href="/blogs">
+                  Blogs
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link px-2 text-body-secondary" aria-current="page" href="/categories">
+                  Categories
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link px-2 text-body-secondary" aria-current="page" href="/about">
+                  About
+                </a>
+              </li>
             </ul>
-            <p class="text-center text-body-secondary">© 2024 Julian Krese</p>
+            <p className="text-center text-body-secondary">© 2024 Julian Krese</p>
         </footer>
     </div>
-  )
+  );
 }

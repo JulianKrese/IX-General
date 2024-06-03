@@ -2,8 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export default function Categories({ blogPost }) {
+
+  if (!blogPost || !blogPost.length) {
+    return null;
+  }
+
   return (
-    <div className="flex-wrap d-flex">
+    <div className="flex-wrap">
       {blogPost.categories.map((category, index) => {
         return (
           <p

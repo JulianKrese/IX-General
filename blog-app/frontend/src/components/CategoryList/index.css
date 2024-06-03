@@ -5,6 +5,7 @@
   grid-template-columns: 32% 32% 32%;
   grid-gap: 2%;
   row-gap: 32px;
+  text-decoration: none;
 }
 
 .card:hover {
