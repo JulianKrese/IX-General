@@ -19,7 +19,7 @@ const createBlog = async (blog) => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData;
+  return blogsApiData.data;
 };
 
 const fetchBlogs = async () => {
@@ -42,7 +42,7 @@ const fetchBlogs = async () => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData;
+  return blogsApiData.data;
 };
 
 const fetchBlogByID = async (id) => {
@@ -64,7 +64,7 @@ const fetchBlogByID = async (id) => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData;
+  return blogsApiData.data;
 };
 
 const fetchBlogsByCategoryId = async (categoryId) => {
@@ -89,7 +89,7 @@ const fetchBlogsByCategoryId = async (categoryId) => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData;
+  return blogsApiData.data;
 };
 
 const fetchBlogsByAuthorId = async (authorId) => {
@@ -114,7 +114,7 @@ const fetchBlogsByAuthorId = async (authorId) => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData;
+  return blogsApiData.data;
 };
 
 const updateBlog = async (blog) => {
@@ -137,7 +137,7 @@ const updateBlog = async (blog) => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData;
+  return blogsApiData.data;
 };
 
 const deleteBlog = async (id) => {
@@ -160,7 +160,7 @@ const deleteBlog = async (id) => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData;
+  return blogsApiData.data;
 };
 
 const blogService = {
