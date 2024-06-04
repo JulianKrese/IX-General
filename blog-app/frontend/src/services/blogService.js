@@ -1,8 +1,9 @@
 const createBlog = async (blog) => {
-  const response = await fetch("http://localhost:8000/blogs", {
+  const response = await fetch("http://localhost:8000/api/blogs", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + JSON.parse(localStorage.getItem("user")).token,
     },
     body: JSON.stringify(blog),
   });
@@ -19,11 +20,11 @@ const createBlog = async (blog) => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData.data;
+  return blogsApiData;
 };
 
 const fetchBlogs = async () => {
-  const response = await fetch("http://localhost:8000/blogs", {
+  const response = await fetch("http://localhost:8000/api/blogs", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -42,11 +43,11 @@ const fetchBlogs = async () => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData.data;
+  return blogsApiData;
 };
 
 const fetchBlogByID = async (id) => {
-  const response = await fetch("http://localhost:8000/blogs/" + id, {
+  const response = await fetch("http://localhost:8000/api/blogs/" + id, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -64,12 +65,12 @@ const fetchBlogByID = async (id) => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData.data;
+  return blogsApiData;
 };
 
 const fetchBlogsByCategoryId = async (categoryId) => {
   const response = await fetch(
-    "http://localhost:8000/blogs/categories/" + categoryId,
+    "http://localhost:8000/api/blogs/categories/" + categoryId,
     {
       method: "GET",
       headers: {
@@ -89,12 +90,12 @@ const fetchBlogsByCategoryId = async (categoryId) => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData.data;
+  return blogsApiData;
 };
 
 const fetchBlogsByAuthorId = async (authorId) => {
   const response = await fetch(
-    "http://localhost:8000/blogs/author/" + authorId,
+    "http://localhost:8000/api/blogs/author/" + authorId,
     {
       method: "GET",
       headers: {
@@ -114,14 +115,15 @@ const fetchBlogsByAuthorId = async (authorId) => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData.data;
+  return blogsApiData;
 };
 
 const updateBlog = async (blog) => {
-  const response = await fetch("http://localhost:8000/blogs/" + blog.id, {
+  const response = await fetch("http://localhost:8000/api/blogs/" + blog.id, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + JSON.parse(localStorage.getItem("user")).token,
     },
     body: JSON.stringify(blog),
   });
@@ -137,14 +139,15 @@ const updateBlog = async (blog) => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData.data;
+  return blogsApiData;
 };
 
 const deleteBlog = async (id) => {
-  const response = await fetch("http://localhost:8000/blogs/" + id, {
+  const response = await fetch("http://localhost:8000/api/blogs/" + id, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + JSON.parse(localStorage.getItem("user")).token,
     },
   });
 
@@ -160,7 +163,7 @@ const deleteBlog = async (id) => {
   }
 
   const blogsApiData = await response.json();
-  return blogsApiData.data;
+  return blogsApiData;
 };
 
 const blogService = {

@@ -1,11 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
+const {protect} = require("../middleware/authMiddleware");
 const blogController = require("../controllers/blogs");
+
+const logMiddleware = (req, res, next) => {
+  console.log(req.body);
+  next();
+}
 
 /* Create */
 
-router.post("/", (req, res) => {
+router.post("/", logMiddleware, protect, (req, res) => {
   blogController.createBlogs(req, res);
 });
 
@@ -29,13 +35,13 @@ router.get("/author/:id", (req, res) => {
 
 /* Update */
 
-router.put("/:id", (req, res) => {
+router.put("/:id", logMiddleware, protect, (req, res) => {
   blogController.updateBlog(req, res);
 });
 
 /* Delete */
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", logMiddleware, protect, (req, res) => {
   blogController.deleteBlog(req, res);
 });
 

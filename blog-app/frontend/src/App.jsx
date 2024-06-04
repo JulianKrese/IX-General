@@ -6,6 +6,7 @@ import BlogPage from "./pages/Blog/";
 import ProfilePage from "./pages/Profile";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
+import AuthorPage from "./pages/Author";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
@@ -54,6 +55,14 @@ const router = createBrowserRouter([
   },
   {
     path: "/author/:authorId?",
+    element: <AuthorPage />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/register",
     element: <RegisterPage />,
   },
 ]);

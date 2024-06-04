@@ -9,7 +9,7 @@ const createBlogs = async (req, res) => {
       description: req.body.description,
       image: req.body.image,
       content: req.body.content,
-      author: req.body.author,
+      authorId: req.body.authorId,
       categoryIds: categoryIds,
     });
 
