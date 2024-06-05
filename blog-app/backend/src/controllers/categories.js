@@ -1,8 +1,5 @@
 const Category = require("../models/Category");
 
-
-/* Create */
-
 const createCategory = async (req, res) => {
   try {
     const category = new Category({
@@ -19,9 +16,6 @@ const createCategory = async (req, res) => {
     res.status(500).json({ message: error.message, data: [] });
   }
 };
-
-
-/* Read */
 
 const getCategories = async (req, res) => {
   try {
@@ -42,9 +36,6 @@ const getCategoryById = async (req, res) => {
   });
 };
 
-
-/* Update */
-
 const updateCategoryByID = async (req, res) => {
   try {
     const category = await Category.findById(req.params.id);
@@ -63,9 +54,6 @@ const updateCategoryByID = async (req, res) => {
     res.status(500).json({ message: error.message, data: [] });
   }
 };
-
-
-/* Delete */
 
 const deleteCategoryByID = async (req, res) => {
   try {

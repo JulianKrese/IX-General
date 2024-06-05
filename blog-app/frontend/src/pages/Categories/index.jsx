@@ -6,7 +6,7 @@ import CategoryList from "../../components/CategoriesList";
 import Footer from "../../components/Footer";
 import Loading from "../../components/Loading";
 
-import categoryService from "../../services/categoryService";
+import categoryService from "../../services/categoriesService";
 import SuccessToast from "../../components/SuccessToast";
 import ErrorToast from "../../components/ErrorToast";
 import AddEditCategoryModal from "../../components/AddEditCategoryModal";
