@@ -25,7 +25,7 @@ const createBlogs = async (req, res) => {
       message: "Blog created!",
       data: blogRes,
     });
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({ message: error.message, data: {} });
   }
 };
@@ -39,7 +39,7 @@ const getBlogs = async (req, res) => {
       message: "Get all blogs!",
       data: blogs,
     });
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({ message: error.message, data: {} });
   }
 };
@@ -57,7 +57,7 @@ const getBlogById = async (req, res) => {
     } else {
       res.status(404).json({ message: "Blog not found!", data: {} });
     }
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({ message: error.message, data: {} });
   }
 };
@@ -78,7 +78,7 @@ const getBlogsByCategoryID = async (req, res) => {
       message: "Get blogs by categoryID!",
       data: blogs,
     });
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({ message: error.message, data: {} });
   }
 };

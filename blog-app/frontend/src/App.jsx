@@ -46,24 +46,16 @@ const router = createBrowserRouter([
     element: <ProfilePage />,
   },
   {
-    path: "/login",
+    path: "/auth/login",
     element: <LoginPage />,
   },
   {
-    path: "/register",
+    path: "/auth/register",
     element: <RegisterPage />,
   },
   {
     path: "/author/:authorId?",
     element: <AuthorPage />,
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
   },
 ]);
 

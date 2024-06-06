@@ -121,7 +121,7 @@ export default function RegisterPage() {
             <button className="w-100 btn btn-lg btn-primary" type="submit">
               Register
             </button>
-            <Link to="/login" className="my-5">
+            <Link to="/auth/login" className="my-5">
               Login
             </Link>
             <p className="mt-5 mb-3 text-muted text-center">

@@ -85,7 +85,7 @@ export default function LoginPage() {
               Sign in
             </button>
 
-            <Link to="/register" className="my-5">
+            <Link to="/auth/register" className="my-5">
               Register
             </Link>
             <p className="mt-5 mb-3 text-muted text-center">

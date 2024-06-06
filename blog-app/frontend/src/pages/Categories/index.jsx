@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
+import categoryService from "../../services/categoriesService";
 
 import Navbar from "../../components/Navbar";
 import Heading from "../../components/Heading";
 import CategoryList from "../../components/CategoriesList";
 import Footer from "../../components/Footer";
 import Loading from "../../components/Loading";
-
-import categoryService from "../../services/categoriesService";
 import SuccessToast from "../../components/SuccessToast";
 import ErrorToast from "../../components/ErrorToast";
 import AddEditCategoryModal from "../../components/AddEditCategoryModal";
