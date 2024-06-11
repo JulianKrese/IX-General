@@ -1,20 +1,23 @@
-import HomePage from "./pages/Home/";
-import CategoriesPage from "./pages/Categories/";
-import BlogsPage from "./pages/Blogs/";
-import AboutPage from "./pages/About/";
-import BlogPage from "./pages/Blog/";
-import ProfilePage from "./pages/Profile";
-import LoginPage from "./pages/Login";
-import RegisterPage from "./pages/Register";
-import AuthorPage from "./pages/Author";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import "bootstrap-icons/font/bootstrap-icons.css";
+
+import "./App.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
-const router = createBrowserRouter([
+import HomePage from "./pages/Home";
+import BlogsPage from "./pages/Blogs";
+import BlogPage from "./pages/Blog";
+import CategoriesPage from "./pages/Categories";
+import LoginPage from "./pages/Login";
+import RegisterPage from "./pages/Register";
+import ProfilePage from "./pages/Profile";
+
+const routes = [
   {
-    path: "/",
+    path: "",
     element: <HomePage />,
   },
   {
@@ -22,42 +25,31 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
+    path: "/blogs/:categoryId?",
+    element: <BlogsPage />,
+  },
+  {
+    path: "/blog/:blogId",
+    element: <BlogPage />,
+  },
+  {
     path: "/categories",
     element: <CategoriesPage />,
   },
   {
-    path: "/blogs",
-    element: <BlogsPage />,
-  },
-  {
-    path: "/about",
-    element: <AboutPage />,
-  },
-  {
-    path: "/blog/:blogId?",
-    element: <BlogPage />,
-  },
-  {
-    path: "/cateory/:Id?",
-    element: <BlogsPage />,
-  },
-  {
-    path: "/profile",
-    element: <ProfilePage />,
-  },
-  {
-    path: "/auth/login",
+    path: "/login",
     element: <LoginPage />,
   },
   {
-    path: "/auth/register",
+    path: "/register",
     element: <RegisterPage />,
   },
   {
-    path: "/author/:authorId?",
-    element: <AuthorPage />,
+    path: "/profile/:authorId",
+    element: <ProfilePage />,
   },
-]);
+];
+const router = createBrowserRouter(routes);
 
 function App() {
   return <RouterProvider router={router} />;
