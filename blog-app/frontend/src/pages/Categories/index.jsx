@@ -78,35 +78,20 @@ export default function CategoriesPage() {
         ></CategoryList>
       </div>
       <Footer />
-      <AddEditCategoryModal
-        addCategory={addCategory}
-        editCategory={editCategory}
-        createCategory={createCategory}
-        updateCategory={updateCategory}
-        onClose={() => {
-          setAddCategory(null);
-          setEditCategory(null);
-        }}
-      />
-      <DeleteCategoryModal
-        deleteCategory={deleteCategory}
-        removeCategory={removeCategory}
-        onClose={() => setDeleteCategory(null)}
-      />
+      <AddEditCategoryModal />
+      <DeleteCategoryModal />
       <SuccessToast
         show={isSuccess}
         message={message}
         onClose={() => {
-          setIsSuccess(false);
-          setMessage("");
+          resetSuccessAndError();
         }}
       />
       <ErrorToast
         show={isError}
         message={message}
         onClose={() => {
-          setIsError(false);
-          setMessage("");
+          resetSuccessAndError();
         }}
       />
     </>
