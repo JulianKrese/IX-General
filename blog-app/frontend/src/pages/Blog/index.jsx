@@ -1,55 +1,43 @@
 import React, { useEffect, useState } from "react";
-
 import { useParams, useNavigate, Link } from "react-router-dom";
 
 import Navbar from "../../components/Navbar";
-
 import Categories from "../../components/Categories";
 import Footer from "../../components/Footer";
-
-import blogService from "../../services/blogService";
 import SuccessToast from "../../components/SuccessToast";
 import ErrorToast from "../../components/ErrorToast";
 import Loading from "../../components/Loading";
 
+import {
+  fetchBlogsByAuthorId,
+  resetSuccessAndError
+} from "../../features/blogsSlice";
+
 import "./index.css";
 
 export default function BlogPage() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { blogId } = useParams();
 
-  const [blog, setBlog] = useState(null);
-  const [isError, setIsError] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [message, setMessage] = useState("");
+  const {
+    blogs,
+    isError: isError,
+    isSuccess: isSuccess,
+    isLoading: isLoading,
+    message: message,
+  } = useSelector((state) => state.blogs);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setIsLoading(true);
-        const blog = await blogService.fetchBlogByID(blogId);
-        setBlog(blog.data);
-        setMessage(blog.message);
-        setIsLoading(false);
-      } catch (error) {
-        setIsError(true);
-        setMessage(error.message || error);
-        setIsLoading(false);
+        dispatch(fetchBlogsByAuthorId());
+      } catch (err) {
+        console.error(err);
       }
     };
     fetchData();
-  }, [blogId]);
-
-  const resetSuccess = () => {
-    setIsSuccess(false);
-    setMessage("");
-  };
-
-  const resetError = () => {
-    setIsError(false);
-    setMessage("");
-  };
+  }, []);
 
   const navigateToAuthorProfile = () => {
     navigate("/profile/" + blog.author.id);
@@ -101,8 +89,20 @@ export default function BlogPage() {
         </div>
       </main>
       <Footer />
-      <SuccessToast show={isSuccess} message={message} onClose={resetSuccess} />
-      <ErrorToast show={isError} message={message} onClose={resetError} />
+      <SuccessToast
+        show={isSuccess}
+        message={message}
+        onClose={() => {
+          dispatch(resetSuccessAndError());
+        }}
+      />
+      <ErrorToast
+        show={isError}
+        message={message}
+        onClose={() => {
+          dispatch(resetSuccessAndError());
+        }}
+      />
     </>
   );
 }
