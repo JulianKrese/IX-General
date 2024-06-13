@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Modal } from "bootstrap";
+import PropTypes from "prop-types";
 
-import {
+export default function AddEditCategoryModal({
+  addCategory,
+  editCategory,
   createCategory,
   updateCategory,
-  setAddCategory,
-  setEditCategory,
-} from "../../features/categoriesSlice";
-
-export default function AddEditCategoryModal() {
+  onClose,
+}) {
   const modalEl = document.getElementById("addEditCategoryModal");
   const addEditCategoryModal = useMemo(() => {
     return modalEl ? new Modal(modalEl) : null;
@@ -155,3 +155,11 @@ export default function AddEditCategoryModal() {
     </div>
   );
 }
+
+AddEditCategoryModal.propTypes = {
+  addCategory: PropTypes.object,
+  editCategory: PropTypes.object,
+  createCategory: PropTypes.func.isRequired,
+  updateCategory: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+};

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import categoryService from "../services/categoryService";
+import categoryService from "../services/categoriesService";
 
 const initialState = {
   addCategory: null,
@@ -34,21 +34,6 @@ export const categoriesSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.message = "";
-    },
-    setEditCategory: (state, { payload }) => {
-      state.editCategory = payload;
-      state.addCategory = null;
-      state.deleteCategory = null;
-    },
-    setAddCategory: (state, { payload }) => {
-      state.addCategory = payload;
-      state.editCategory = null;
-      state.deleteCategory = null;
-    },
-    setDeleteCategory: (state, { payload }) => {
-      state.deleteCategory = payload;
-      state.addCategory = null;
-      state.editCategory = null;
     },
   },
   extraReducers: (builder) => {
