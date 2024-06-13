@@ -8,6 +8,7 @@ connectDB();
 const blogRoutes = require("./routes/blogs");
 const categoryRoutes = require("./routes/categories");
 const authRoutes = require("./routes/auth");
+const path = require("path");
 
 const port = process.env.PORT || 8000;
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use("/blogs", blogRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/auth", authRoutes);
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 
 app.listen(port, () => {
