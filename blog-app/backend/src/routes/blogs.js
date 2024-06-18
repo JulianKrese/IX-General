@@ -13,14 +13,14 @@ const logMiddleware = (req, res, next) => {
 };
 
 /**
- * POST /api/blogs
+ * POST /blogs
  */
 router.post("/", logMiddleware, protect, upload.single("image"), (req, res) => {
   blogController.createBlogs(req, res);
 });
 
 /**
- * GET /api/blogs
+ * GET /blogs
  */
 router.get("/", (req, res) => {
   blogController.getBlogs(req, res);
@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
 
 /**
  * Get blogs by blogID
- * GET /api/blogs/:id
+ * GET /blogs/:id
  */
 router.get("/:id", (req, res) => {
   blogController.getBlogById(req, res);
@@ -36,7 +36,7 @@ router.get("/:id", (req, res) => {
 
 /**
  * Get blogs by categoryID
- * GET /api/blogs/categories/:id
+ * GET /blogs/categories/:id
  */
 router.get("/categories/:id", (req, res) => {
   blogController.getBlogsByCategoryID(req, res);
@@ -44,21 +44,21 @@ router.get("/categories/:id", (req, res) => {
 
 /**
  * Get blogs by authorId
- * GET /api/blogs/author/:id
+ * GET /blogs/author/:id
  */
 router.get("/author/:id", (req, res) => {
   blogController.getBlogsByAuthorID(req, res);
 });
 
 /**
- * Put /api/blogs/
+ * Put /blogs/
  */
 router.put("/:id", protect, upload.single("image"), (req, res) => {
   blogController.updateBlogByID(req, res);
 });
 
 /**
- * DELETE /api/blogs/
+ * DELETE /blogs/
  */
 router.delete("/:id", protect, (req, res) => {
   blogController.deleteBlogByID(req, res);

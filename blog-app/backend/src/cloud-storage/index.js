@@ -1,14 +1,14 @@
 const { Storage } = require("@google-cloud/storage");
 
 const storage = new Storage({
-  projectId: "devit-tech-web-site",
-  keyFilename: "./devit-tech-web-site-4f392cb2c8b3.json",
+  projectId: "ix-blogapp",
+  keyFilename: "./gcp_key.json",
 });
 
 const uploadToFirebaseStorage = async (filepath, fileName) => {
   try {
-    const gcs = storage.bucket("gs://ix-blog-app");
-    const storagepath = `ix-blog-app/${fileName}`;
+    const gcs = storage.bucket("gs://blog-app-juliankrese");
+    const storagepath = `blog-app-juliankrese/${fileName}`;
 
     const result = await gcs.upload(filepath, {
       destination: storagepath,
@@ -24,6 +24,8 @@ const uploadToFirebaseStorage = async (filepath, fileName) => {
   }
 };
 
-module.exports = {
+const GoogleCloudService = {
   uploadToFirebaseStorage,
 };
+
+module.exports = GoogleCloudService;

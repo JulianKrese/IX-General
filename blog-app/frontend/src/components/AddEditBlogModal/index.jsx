@@ -14,12 +14,12 @@ import {
 } from "../../features/blogsSlice";
 
 export default function AddEditBlogModal() {
+  const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
 
   const { addBlog, editBlog } = useSelector((state) => state.blogs);
   const { categories } = useSelector((state) => state.categories);
-  
-  const [user, setUser] = useState();
+
   const [blog, setBlog] = useState();
   const [blogImage, setBlogImage] = useState();
 
@@ -32,26 +32,12 @@ export default function AddEditBlogModal() {
   useEffect(() => {
     if (addBlog) {
       setBlog(addBlog);
-      addEditModal.show();
+      addEditModal?.show();
     } else if (editBlog) {
       setBlog(editBlog);
-      addEditModal.show();
+      addEditModal?.show();
     }
   }, [addBlog, editBlog, addEditModal]);
-
-  const onSubmit = (e) => {
-    e?.preventDefault();
-    if (isFormValid()) {
-      const blogForm = buildFormData();
-      if (addBlog) {
-        dispatch(createBlog(blogForm));
-      } else if (editBlog) {
-        dispatch(updateBlog(blogForm));
-      }
-      resetBlog();
-      addEditModal?.hide();
-    }
-  };
 
   const buildFormData = () => {
     const formData = new FormData();
@@ -63,6 +49,20 @@ export default function AddEditBlogModal() {
     formData.append("content", JSON.stringify(blog.content));
     formData.append("authorId", user?._id);
     return formData;
+  };
+
+  const onSubmit = (e) => {
+    e?.preventDefault();
+    if (isFormValid()) {
+      const formData = buildFormData();
+      if (addBlog) {
+        dispatch(createBlog(formData));
+      } else if (editBlog) {
+        dispatch(updateBlog(formData));
+      }
+      resetBlog();
+      addEditModal?.hide();
+    }
   };
 
   const resetBlog = () => {
@@ -127,7 +127,7 @@ export default function AddEditBlogModal() {
             </div>
             <div className="modal-body">
               <form id="blogForm">
-              <FormImage image={blogImage} onChange={onImageChange}/>
+                <FormImage image={blogImage} onChange={onImageChange} />
                 <div className="input-group mb-3">
                   <label
                     className="input-group-text"

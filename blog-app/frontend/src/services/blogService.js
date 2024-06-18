@@ -1,5 +1,5 @@
 const createBlog = async (blog) => {
-  const response = await fetch("http://localhost:8000/api/blogs", {
+  const response = await fetch("http://localhost:8000/blogs", {
     method: "POST",
     headers: {
       // "Content-Type": "application/json",
@@ -120,7 +120,7 @@ const fetchBlogsByAuthorId = async (authorId) => {
 };
 
 const updateBlog = async (blog) => {
-  const response = await fetch("http://localhost:8000/api/blogs/" + blog.get('id'), {
+  const response = await fetch("http://localhost:8000/blogs/" + blog.get('id'), {
     method: "PUT",
     headers: {
       // "Content-Type": "application/json",
@@ -147,7 +147,7 @@ const deleteBlog = async (id) => {
   const response = await fetch("http://localhost:8000/blogs/" + id, {
     method: "DELETE",
     headers: {
-      "Content-Type": "application/json",
+      // "Content-Type": "application/json",
       Authorization: "Bearer " + JSON.parse(localStorage.getItem("user")).token,
     },
   });

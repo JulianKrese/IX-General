@@ -3,10 +3,10 @@ const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     switch (req.baseUrl) {
-      case "/api/blogs":
+      case "/blogs":
         cb(null, "uploads/blogs/");
         break;
-      case "/api/auth":
+      case "/auth":
         cb(null, "uploads/users/");
         break;
       default:
