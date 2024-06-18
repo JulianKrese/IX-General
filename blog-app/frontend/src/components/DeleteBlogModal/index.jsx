@@ -44,7 +44,7 @@ export default function DeleteBlogModal() {
   };
 
   const onDelete = () => {
-    console.log(blog?.id);
+    (blog?.id);
     dispatch(fetchBlogs());
     dispatch(deleteBlogById(blog?.id));
     resetBlog();

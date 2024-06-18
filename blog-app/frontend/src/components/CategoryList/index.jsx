@@ -18,7 +18,7 @@ export default function CategoriesList({ categories }) {
             className="card"
             style={{ borderRadius: "0px", border: "none" }}
             onClick={() => {
-              console.log("TODO: Navigate to categories page");
+              ("TODO: Navigate to categories page");
             }}
           >
             <div

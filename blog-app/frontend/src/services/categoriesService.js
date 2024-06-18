@@ -13,7 +13,7 @@ const createCategory = async (category) => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      (err);
       const error = new Error("Something went wrong");
       throw error.message;
     }
@@ -36,7 +36,7 @@ const fetchCategories = async () => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      (err);
       const error = new Error("Something went wrong");
       throw error.message;
     }
@@ -65,7 +65,7 @@ const updateCategory = async (category) => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      (err);
       const error = new Error("Something went wrong");
       throw error.message;
     }
@@ -89,7 +89,7 @@ const deleteCategory = async (id) => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      (err);
       const error = new Error("Something went wrong");
       throw error.message;
     }

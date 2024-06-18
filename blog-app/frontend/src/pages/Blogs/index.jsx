@@ -86,7 +86,7 @@ export default function BlogsPage() {
     return categories.map((category) => {
       return categoryId === category.id ? (
         <Link
-          className="link"
+          className="link mx-4"
           key={category.id}
           to={"/blogs/" + category.id}
           style={{ color: "blue" }}
@@ -95,7 +95,7 @@ export default function BlogsPage() {
         </Link>
       ) : (
         <Link
-          className="link"
+          className="link mx-4"
           key={category.id}
           to={"/blogs/" + category.id}
           style={{ color: "black" }}
@@ -112,37 +112,39 @@ export default function BlogsPage() {
 
   return (
     <>
-      <Navbar />
-      <div className="container">
-        <Heading />
-        <div className="scroll-menu">
-          <CategoriesList categoryId={categoryId} />
-        </div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <p className="page-subtitle">Blog Posts</p>
-          <AddButton />
-        </div>
-        <BlogList blogs={blogs} />
-        <AddEditBlogModal />
-        <DeleteBlogModal />
+  <Navbar />
+  <div className="container">
+    <Heading />
+    <div>
+      <div className="scroll-menu d-flex flex-row">
+        <CategoriesList categoryId={categoryId} />
       </div>
-      <Footer />
-      <SuccessToast
-        show={isBlogSuccess || isCategoriesSuccess}
-        message={blogsMessage || categoriesMessage}
-        onClose={() => {
-          dispatch(resetBlog());
-          dispatch(resetCategory());
-        }}
-      />
-      <ErrorToast
-        show={isBlogsError || isCategoriesError}
-        message={blogsMessage || categoriesMessage}
-        onClose={() => {
-          dispatch(resetBlog());
-          dispatch(resetCategory());
-        }}
-      />
-    </>
+    </div>
+    <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <p className="page-subtitle">Blog Posts</p>
+      <AddButton />
+    </div>
+    <BlogList blogs={blogs} />
+    <AddEditBlogModal />
+    <DeleteBlogModal />
+  </div>
+  <Footer />
+  <SuccessToast
+    show={isBlogSuccess || isCategoriesSuccess}
+    message={blogsMessage || categoriesMessage}
+    onClose={() => {
+      dispatch(resetBlog());
+      dispatch(resetCategory());
+    }}
+  />
+  <ErrorToast
+    show={isBlogsError || isCategoriesError}
+    message={blogsMessage || categoriesMessage}
+    onClose={() => {
+      dispatch(resetBlog());
+      dispatch(resetCategory());
+    }}
+  />
+</>
   );
 }

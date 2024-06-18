@@ -13,7 +13,7 @@ const createBlog = async (blog) => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      (err);
       const error = new Error("Something went wrong");
       throw error.message;
     }
@@ -37,7 +37,7 @@ const fetchBlogs = async () => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      (err);
       const error = new Error("Something went wrong");
       throw error.message;
     }
@@ -59,7 +59,7 @@ const fetchBlogByID = async (id) => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      (err);
       const error = new Error("Something went wrong");
       throw error.message;
     }
@@ -84,7 +84,7 @@ const fetchBlogsByCategoryId = async (categoryId) => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      (err);
       const error = new Error("Something went wrong");
       throw error.message;
     }
@@ -109,7 +109,7 @@ const fetchBlogsByAuthorId = async (authorId) => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      (err);
       const error = new Error("Something went wrong");
       throw error.message;
     }
@@ -133,7 +133,7 @@ const updateBlog = async (blog) => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      (err);
       const error = new Error("Something went wrong");
       throw error.message;
     }
@@ -157,7 +157,7 @@ const deleteBlog = async (id) => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      (err);
       const error = new Error("Something went wrong");
       throw error.message;
     }

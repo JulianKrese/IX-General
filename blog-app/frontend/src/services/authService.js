@@ -12,7 +12,7 @@ const register = async (userData) => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      (err);
       const error = new Error("Something went wrong");
       throw error.message;
     }
@@ -37,7 +37,7 @@ const login = async (userData) => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      (err);
       const error = new Error("Something went wrong");
       throw error.message;
     }

@@ -41,7 +41,7 @@ export default function RegisterPage() {
       dispatch(register(formData));
       navigate("/home");
     } catch (err) {
-      console.log(err);
+      (err);
     }
   };
 

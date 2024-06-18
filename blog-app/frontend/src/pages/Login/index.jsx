@@ -38,7 +38,7 @@ export default function LoginPage() {
       dispatch(login(formData));
       navigate("/home");
     } catch (err) {
-      console.log(err);
+      (err);
     }
   };
 
