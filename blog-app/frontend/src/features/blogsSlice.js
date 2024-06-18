@@ -50,18 +50,6 @@ export const fetchBlogsByCategoryId = createAsyncThunk(
   }
 );
 
-export const fetchBlogsByAuthorId = createAsyncThunk(
-  "blogs/fetchBlogByAuthoId",
-  async (authorId, thunkAPI) => {
-    try {
-      return await blogService.fetchBlogsByAuthorId(authorId || null);
-    } catch (error) {
-      const message = error.message || error;
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
 export const fetchBlogById = createAsyncThunk(
   "blogs/fetchBlogById",
   async (blogId, thunkAPI) => {
@@ -176,22 +164,6 @@ export const blogsSlice = createSlice({
         state.isSuccess = false;
         state.message = payload;
       })
-      .addCase(fetchBlogsByAuthorId.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchBlogsByAuthorId.fulfilled, (state, { payload }) => {
-        state.blogs = payload.data;
-        state.isLoading = false;
-        // state.isSuccess = true;
-        state.isError = false;
-        // state.message = payload.message;
-      })
-      .addCase(fetchBlogsByAuthorId.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.isSuccess = false;
-        state.message = payload;
-      })
       .addCase(fetchBlogById.pending, (state) => {
         state.isLoading = true;
       })
@@ -231,12 +203,13 @@ export const blogsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(deleteBlogById.fulfilled, (state, { payload }) => {
-        state.blogs = state.blogs.filter((x) => x.id !== payload);
+        state.blogs = state.blogs.filter((x) => x !== payload.id);
         state.deleteBlog = null;
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
-        state.message = "Blog deleted successfully";
+
+        state.message = payload.message;
       })
       .addCase(deleteBlogById.rejected, (state, { payload }) => {
         state.isLoading = false;

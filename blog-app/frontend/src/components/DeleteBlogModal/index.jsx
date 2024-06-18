@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deleteBlogById,
   setDeleteBlog,
+  fetchBlogs,
 } from "../../features/blogsSlice";
 
 export default function DeleteBlogModal() {
@@ -44,6 +45,7 @@ export default function DeleteBlogModal() {
 
   const onDelete = () => {
     console.log(blog?.id);
+    dispatch(fetchBlogs());
     dispatch(deleteBlogById(blog?.id));
     resetBlog();
     deleteBlogModal?.hide();
