@@ -5,10 +5,10 @@ import Navbar from "../../components/Navbar";
 import BlogList from "../../components/BlogList";
 import Footer from "../../components/Footer";
 import Loading from "../../components/Loading";
-import AddEditBlogModal from "../../components/AddEditBlogModal";
-import DeleteBlogModal from "../../components/DeleteBlogModal";
+import EditProfileModal from "../../components/EditProfileModal";
 import SuccessToast from "../../components/SuccessToast";
 import ErrorToast from "../../components/ErrorToast";
+import EditProfileButton from "../../components/EditProfileButton";
 
 import blogService from "../../services/blogService";
 import authService from "../../services/authService";
@@ -22,6 +22,7 @@ export default function ProfilePage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false); // New state
 
   useEffect(() => {
     const fetchAuthorBlogs = async () => {
@@ -40,6 +41,14 @@ export default function ProfilePage() {
     };
     fetchAuthorBlogs();
   }, [authorId]);
+
+  const onEdit = () => {
+    setIsEditModalVisible(true); // Show the modal on edit button click
+  }
+
+  const closeEditModal = () => {
+    setIsEditModalVisible(false); // Close the modal
+  }
 
   const resetSuccess = () => {
     setIsSuccess(false);
@@ -75,13 +84,15 @@ export default function ProfilePage() {
     <>
       <Navbar />
       <div className="container">
-        <AuthorDetails />
+        <div>
+          <EditProfileButton onEdit={onEdit} />
+          <AuthorDetails />
+        </div>
         <p className="page-subtitle">Author Blog Posts</p>
         <BlogList blogs={blogs} />
         <Footer />
       </div>
-      <AddEditBlogModal />
-      <DeleteBlogModal />
+      <EditProfileModal show={isEditModalVisible} onClose={closeEditModal} /> {/* Pass state as props */}
       <SuccessToast show={isSuccess} message={message} onClose={resetSuccess} />
       <ErrorToast show={isError} message={message} onClose={resetError} />
     </>

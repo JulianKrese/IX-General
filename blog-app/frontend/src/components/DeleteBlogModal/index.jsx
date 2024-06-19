@@ -44,11 +44,15 @@ export default function DeleteBlogModal() {
   };
 
   const onDelete = () => {
-    (blog?.id);
-    dispatch(fetchBlogs());
-    dispatch(deleteBlogById(blog?.id));
-    resetBlog();
-    deleteBlogModal?.hide();
+    if (blog?.id) {
+      dispatch(deleteBlogById(blog.id))
+        .unwrap()
+        .then(() => {
+          dispatch(fetchBlogs());
+          resetBlog();
+          deleteBlogModal?.hide();
+        });
+    }
   };
 
   return (
@@ -72,7 +76,7 @@ export default function DeleteBlogModal() {
             ></button>
           </div>
           <div className="modal-body">
-            <p>Are You sure you want to delete this Blog Post?</p>
+            <p>Are you sure you want to delete this Blog Post?</p>
             <div style={{ display: "flex", alignItems: "center" }}>
               <img
                 src={blog?.image}
@@ -82,7 +86,6 @@ export default function DeleteBlogModal() {
               <h5 style={{ marginLeft: "8px" }}>{blog?.title}</h5>
             </div>
           </div>
-
           <div className="modal-footer">
             <button
               type="button"
