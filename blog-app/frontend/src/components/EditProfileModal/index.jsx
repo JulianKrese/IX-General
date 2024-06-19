@@ -1,10 +1,21 @@
 import React, { useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import { Modal } from "bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import FormImage from "../FormImage";
+import {
+  updateUser,
+  resetSuccessAndError,
+  setEditUser,
+} from "../../features/authSlice";
 
 export default function EditProfileModal({ show, onClose }) {
+  const dispatch = useDispatch();
+  const { authorId } = useParams();
+  const { editUser, isSuccess, isError, message } = useSelector((state) => state.auth);
+
   const [profile, setProfile] = useState({
     image: null,
     firstName: "",
@@ -13,6 +24,27 @@ export default function EditProfileModal({ show, onClose }) {
     email: "",
   });
   const [profileImage, setProfileImage] = useState("");
+
+  useEffect(() => {
+    if (show && editUser) {
+      setProfile({
+        image: editUser.image,
+        firstName: editUser.firstName,
+        lastName: editUser.lastName,
+        bio: editUser.bio,
+        email: editUser.email,
+      });
+      setProfileImage(editUser.image ? URL.createObjectURL(editUser.image) : "");
+    }
+  }, [show, editUser]);
+
+  useEffect(() => {
+    if (isSuccess || isError) {
+      setTimeout(() => {
+        dispatch(resetSuccessAndError());
+      }, 3000);
+    }
+  }, [isSuccess, isError, dispatch]);
 
   const modalEl = document.getElementById("editProfileModal");
 
@@ -30,6 +62,7 @@ export default function EditProfileModal({ show, onClose }) {
 
   const buildFormData = () => {
     const formData = new FormData();
+    formData.append("id", authorId);
     if (profile.image) {
       formData.append("image", profile.image);
     }
@@ -44,7 +77,7 @@ export default function EditProfileModal({ show, onClose }) {
     e.preventDefault();
     if (isFormValid()) {
       const formData = buildFormData();
-      // connect to user profile
+      dispatch(updateUser({ userId: authorId, userData: formData }));
       onClose();
     }
   };
@@ -92,7 +125,7 @@ export default function EditProfileModal({ show, onClose }) {
             </div>
             <div className="modal-body">
               <form id="profileForm" noValidate>
-              <FormImage image={profile.image} onChange={onImageChange} />
+                <FormImage image={profileImage} onChange={onImageChange} />
                 <div className="mb-3">
                   <label htmlFor="firstName" className="form-label">
                     First Name
@@ -155,7 +188,7 @@ export default function EditProfileModal({ show, onClose }) {
               </form>
             </div>
             <div className="modal-footer">
-            <button
+              <button
                 type="button"
                 className="btn btn-secondary"
                 onClick={onClose}

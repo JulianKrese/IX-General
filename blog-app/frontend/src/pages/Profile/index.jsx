@@ -14,6 +14,7 @@ import blogService from "../../services/blogService";
 import authService from "../../services/authService";
 
 export default function ProfilePage() {
+  const user = JSON.parse(localStorage.getItem("user"));
   const { authorId } = useParams();
 
   const [author, setAuthor] = useState();
@@ -43,11 +44,11 @@ export default function ProfilePage() {
   }, [authorId]);
 
   const onEdit = () => {
-    setIsEditModalVisible(true); // Show the modal on edit button click
+    setIsEditModalVisible(true);
   }
 
   const closeEditModal = () => {
-    setIsEditModalVisible(false); // Close the modal
+    setIsEditModalVisible(false);
   }
 
   const resetSuccess = () => {
@@ -70,6 +71,9 @@ export default function ProfilePage() {
             </h4>
             <img src={author.image} className="avatar" alt="..." />
             <p>{author.bio.substring(0, 100)}...</p>
+            {user && user._id === author._id && (
+              <EditProfileButton onEdit={onEdit} />
+            )}
           </div>
         </div>
       </div>
@@ -84,15 +88,12 @@ export default function ProfilePage() {
     <>
       <Navbar />
       <div className="container">
-        <div>
-          <EditProfileButton onEdit={onEdit} />
-          <AuthorDetails />
-        </div>
+        <AuthorDetails />
         <p className="page-subtitle">Author Blog Posts</p>
         <BlogList blogs={blogs} />
         <Footer />
       </div>
-      <EditProfileModal show={isEditModalVisible} onClose={closeEditModal} /> {/* Pass state as props */}
+      <EditProfileModal show={isEditModalVisible} onClose={closeEditModal} />
       <SuccessToast show={isSuccess} message={message} onClose={resetSuccess} />
       <ErrorToast show={isError} message={message} onClose={resetError} />
     </>
