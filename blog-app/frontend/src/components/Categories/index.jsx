@@ -9,7 +9,7 @@ export default function Categories({ blogPost }) {
 
   return (
     <div className="flex-wrap">
-      {blogPost.categories.map((category, index) => {
+      {blogPost.categoryIds.map((category, index) => {
         return (
           <p
             key={index}

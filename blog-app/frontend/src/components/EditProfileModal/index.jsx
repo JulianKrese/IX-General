@@ -155,7 +155,7 @@ export default function EditProfileModal({ show, onClose }) {
               </form>
             </div>
             <div className="modal-footer">
-              <button
+            <button
                 type="button"
                 className="btn btn-secondary"
                 onClick={onClose}

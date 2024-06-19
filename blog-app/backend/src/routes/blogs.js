@@ -7,8 +7,8 @@ const { protect } = require("../middleware/authMiddleware");
 const { upload } = require("../middleware/multer");
 
 const logMiddleware = (req, res, next) => {
-  console.log("I am a middleware");
-  console.log(req.bogy);
+  ("I am a middleware");
+  (req.bogy);
   next();
 };
 

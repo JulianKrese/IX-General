@@ -7,7 +7,7 @@ export default function EditProfileButton({onEdit}) {
         style={{
           position: "absolute",
           top: "120px",
-          right: "220px",
+          right: "36%",
           border: "none",
           zIndex: 1,
         }}
